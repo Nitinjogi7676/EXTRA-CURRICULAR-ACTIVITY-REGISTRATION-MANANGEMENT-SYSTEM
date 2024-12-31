@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #61419b, #d4c7ec);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .events-container {
+      width: 90%;
+      max-width: 800px;
+      background: #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .event {
+      border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+    }
+
+    .event:last-child {
+      border-bottom: none;
+    }
+
+    .event-title {
+      font-weight: bold;
+      color: #8d60de;
+    }
+
+    .register-btn, .view-events-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #8d60de;
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .register-btn:hover, .view-events-btn:hover {
+      background: #6b3bbd;
+    }
+
+    .no-events {
+      text-align: center;
+      color: #555;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome, <%= user.userid || user.OrganizerName %>!</h1>
+
+  <!-- Button to View Registered Events -->
+  <button class="view-events-btn" onclick="location.href='/students/registered-events?studentid=<%= user.userid %>'">View Registered Events</button>
+
+  <!-- Events Container -->
+  <div class="events-container">
+    <% if (r.length > 0) { %>
+      <% r.forEach(event => { %>
+        <div class="event">
+          <p class="event-title">Event Name: <%= event.EventName %></p>
+          <p>Date: <%= event.EventDate %></p>
+          <p>Time: <%= event.EventTime %></p>
+          <p>Location: <%= event.Location %></p>
+          <p>Organizer: <%= event.OrganizerID %></p>
+          <p>Fee: ₹<%= event.fee %></p>
+          <button class="register-btn" onclick="redirectToRegister('<%= user.userid %>', '<%= event.EventID %>', '<%= event.fee %>')">REGISTER</button>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p class="no-events">No events available at the moment.</p>
+    <% } %>
+  </div>
+
+  <script>
+    function redirectToRegister(studentid, eventid, fee) {
+      location.href = `/registration/details?studentid=${studentid}&eventid=${eventid}&fee=${fee}`;
+    }
+
+    <% if (deletedEvent) { %>
+      alert('An event you registered for has been deleted: <%= deletedEvent.EventName %>');
+    <% } %>
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body{
+            background-color: rgb(212, 191, 223);
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, <%= user.userid || user.OrganizerName %>!</h1>
+    <hr>
+    <% if (r.length  > 0) {%>
+        <% r.forEach(res => { %>
+            <p><%= res.EventID %></p>
+            <p><%= res.EventName %></p>
+            <p><%= res.EventDate %></p>
+            <p><%= res.EventTime %></p>
+            <p><%= res.Location %></p>
+            <p><%= res.OrganizerID %></p>
+            <p><%= res.fee %></p>
+            <button onclick="redirectToRegister('<%= user.userid %>', '<%= res.EventID %>', '<%= res.fee %>')">REGISTER</button>
+
+
+            <hr>
+        <% }); %>
+    <% } else { %>
+        <p>No Events</p>
+        <% } %>
+
+
+        <script>
+
+function redirectToRegister(studentid, eventid, fee) {
+        location.href = `/registration/details?studentid=${studentid}&eventid=${eventid}&fee=${fee}`;
+    }
+
+            async function val(u , e)
+            {
+                const res = await fetch('/registration', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        studentid: u,
+        eventid: e,
+        paymentstatus: "pending"
+    })
+});
+
+        const data = await res.json();
+        console.log('Response from the server:', data);
+        location.href = '/registration'
+
+            }
+        </script>
+</body>
+</html> -->

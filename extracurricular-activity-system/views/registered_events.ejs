@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registered Events</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #61419b, #d4c7ec);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .events-container {
+      width: 90%;
+      max-width: 800px;
+      background: #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .event {
+      border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+    }
+
+    .event:last-child {
+      border-bottom: none;
+    }
+
+    .event-title {
+      font-weight: bold;
+      color: #8d60de;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #8d60de;
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .back-btn:hover {
+      background: #6b3bbd;
+    }
+
+    .no-events {
+      text-align: center;
+      color: #555;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Registered Events</h1>
+
+  <div class="events-container">
+    <% if (events && events.length > 0) { %>
+      <% events.forEach(event => { %>
+        <div class="event">
+          <p class="event-title">Event Name: <%= event.EventName %></p>
+          <p>Date: <%= event.EventDate %></p>
+          <p>Time: <%= event.EventTime %></p>
+          <p>Location: <%= event.Location %></p>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p class="no-events">You have not registered for any events yet.</p>
+    <% } %>
+  </div>
+
+  <button class="back-btn" onclick="location.href='/students/dashboard'">Back to Dashboard</button>
+</body>
+</html>

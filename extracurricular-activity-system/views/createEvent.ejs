@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .event-form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .event-form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="event-form-container">
+    <h2>Create Event</h2>
+    <form action="/events" method="POST">
+        <!-- Event ID -->
+        <div class="form-group">
+            <label for="eventid">Event ID</label>
+            <input type="text" id="eventid" name="eventid" required>
+        </div>
+
+        <!-- Event Name -->
+        <div class="form-group">
+            <label for="eventname">Event Name</label>
+            <input type="text" id="eventname" name="eventname" required>
+        </div>
+
+        <!-- Event Date -->
+        <div class="form-group">
+            <label for="eventdate">Event Date</label>
+            <input type="date" id="eventdate" name="eventdate"  min="<%= new Date().toISOString().split('T')[0] %>" required>
+        </div>
+
+        <!-- Event Time -->
+        <div class="form-group">
+            <label for="eventtime">Event Time</label>
+            <input type="time" id="eventtime" name="eventtime" required>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+
+        <!-- Organizer ID -->
+        <div class="form-group">
+            <label for="organizerid">Organizer ID</label>
+            <input type="text" id="organizerid" name="organizerid" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fee">Fee</label>
+            <input type="number" id="fee" name="fee" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Create Event</button>
+    </form>
+
+    <!-- Error Message Placeholder -->
+    <div class="error" id="error-message"><%= message %></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #5da3a4, #e4f0f1);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Form Container */
+    .form-container {
+      width: 90%;
+      max-width: 600px;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Input Fields */
+    .form-container label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus {
+      border-color: #5da3a4;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    /* Submit Button */
+    .form-container button {
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: #5da3a4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background: #487f80;
+    }
+
+    /* Error or Success Message */
+    .form-container p {
+      text-align: center;
+      font-size: 14px;
+      color: red;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 15px;
+      }
+
+      .form-container h1 {
+        font-size: 20px;
+      }
+
+      .form-container button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Student Registration</h1>
+    <form action="/students/register" method="POST">
+      <!-- Student ID -->
+      <label for="studentid">Student ID:</label>
+      <input type="text" name="studentid" id="studentid" required>
+
+      <!-- First Name -->
+      <label for="fname">First Name:</label>
+      <input type="text" name="fname" id="fname" required>
+
+      <!-- Last Name -->
+      <label for="lname">Last Name:</label>
+      <input type="text" name="lname" id="lname" required>
+
+      <!-- Middle Initial -->
+      <label for="minit">Middle Initial:</label>
+      <input type="text" name="minit" id="minit" maxlength="1">
+
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required>
+
+      <!-- Department -->
+      <label for="dept">Department:</label>
+      <input type="text" name="dept" id="dept" required>
+
+      <!-- Year of Study -->
+      <label for="yearOfStudy">Year of Study:</label>
+      <input type="number" name="yearOfStudy" id="yearOfStudy" min="1" max="4" required>
+
+      <!-- Phone Number -->
+      <label for="phoneno">Phone Number:</label>
+      <input type="number" name="phoneno" id="phoneno" required>
+
+      <!-- Address -->
+      <label for="address">Address:</label>
+      <textarea name="address" id="address" rows="4" required></textarea>
+
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required>
+
+      <!-- Submit Button -->
+      <button type="submit">Register</button>
+    </form>
+    <!-- Dynamic Message -->
+    <p><%= message %></p>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body{
+            background-color: rgb(115, 170, 177);
+            background-position: 5rem;
+            color   :white;
+        }
+        form{
+            background-color:white;
+            color: black;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+            display: block;
+            gap: 15rem;
+        }
+        label{
+            text-align: 10rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Registration</h1>
+    <form action="/students/register" method="POST">
+        <label for="studentid">Student ID:</label>
+        <input type="text" name="studentid" id="studentid" required><br>
+
+        <label for="fname">First Name:</label>
+        <input type="text" name="fname" id="fname" required><br>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" name="lname" id="lname" required><br>
+
+        <label for="minit">Middle Initial:</label>
+        <input type="text" name="minit" id="minit" maxlength="1"><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br>
+
+        <label for="dept">Department:</label>
+        <input type="text" name="dept" id="dept" required><br>
+
+        <label for="yearOfStudy">Year of Study:</label>
+        <input type="number" name="yearOfStudy" id="yearOfStudy" min="1" max="4" required><br>
+
+        <label for="phoneno">Phone Number:</label>
+        <input type="tel" name="phoneno" id="phoneno"  required><br>
+
+        <label for="address">Address:</label>
+        <textarea name="address" id="address" rows="4" required></textarea><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <button type="submit">Register</button>
+    </form>
+    <p><%= message %></p>
+</body>
+</html>
+
+
+
+  -->
